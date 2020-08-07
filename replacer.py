@@ -7,12 +7,9 @@ import re
 def replace(data, text):
     ret_text = ""
     for line in text.split('\n'):
-        if 'Course Name' in line:
-            for r in re.finditer('[0-9]{5}', line):
-                crn = r.group()
-                ret_text += line[:r.end()] + f'({data[crn]}) ' + line[r.end():] + '\n'
-        else:
-            ret_text += line + '\n'
+        for r in re.finditer('[0-9]{5}', line):
+            crn = r.group()
+            ret_text += f'{crn}\t{data[crn]}\n'
     return ret_text
 
 
