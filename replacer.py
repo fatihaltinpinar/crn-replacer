@@ -9,7 +9,7 @@ def replace(data, text):
     for line in text.split('\n'):
         for r in re.finditer('[0-9]{5}', line):
             crn = r.group()
-            ret_text += f'{crn}\t{data[crn]}\n'
+            ret_text += f'{crn}\t{data[crn]["course_title"]}\t{data[crn]["instructor"]}\n'
     return ret_text
 
 

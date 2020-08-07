@@ -23,8 +23,10 @@ def parse_schedule(url):
     for course in courses:
         columns = course.find_all('td')
         crn = columns[0].text
+        course_title = columns[2].text
         instructor = columns[3].text
-        data[crn] = instructor
+        data[crn] = {'course_title':course_title,
+                     'instructor':instructor}
     return data
 
 
