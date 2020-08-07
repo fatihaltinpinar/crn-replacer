@@ -9,7 +9,12 @@ def replace(data, text):
     for line in text.split('\n'):
         for r in re.finditer('[0-9]{5}', line):
             crn = r.group()
-            ret_text += f'{crn}\t{data[crn]["course_title"]}\t{data[crn]["instructor"]}\n'
+            try:
+                ret_text += f'{crn}\t{data[crn]["course_title"]}\t{data[crn]["instructor"]}\n'
+            except KeyError:
+                ret_text += f"{crn}\tNo Data\n"
+            except:
+                ret_text += "Something terrible happened\n"
     return ret_text
 
 
